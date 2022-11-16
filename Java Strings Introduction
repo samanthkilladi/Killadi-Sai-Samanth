@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        
+        Scanner sc=new Scanner(System.in);
+        String A=sc.next();
+        String B=sc.next();
+        /* Enter your code here. Print output to STDOUT. */
+        
+        int lengtha= A.length();
+        int lengthb= B.length();
+        System.out.println(lengtha+lengthb);
+        int d1= A.compareTo(B);
+        if(d1>0)
+        {
+            System.out.println("Yes");
+        }
+        else{
+            System.out.println("No");
+        }
+        String AC= A.substring(0,1).toUpperCase();
+        String BC= B.substring(0,1).toUpperCase();
+        System.out.print(AC+A.substring(1,lengtha)+"\t");
+         System.out.print(BC+B.substring(1,lengthb));
+
+    }
+}
+    
+
+
+
+
