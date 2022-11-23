@@ -1,0 +1,92 @@
+package DL.co;
+
+public class UnderAgeException extends Exception {
+	public String getMessage()
+	{
+		return "under age be patient";
+	}
+
+}
+
+public class OverAgeException extends Exception{
+	public String getMessage()
+	{
+		return "Over age take rest";
+	}
+
+}
+
+package DL.co;
+import java.util.*;
+public class Applicant {
+	int age;
+	
+	public void acceptInput()
+	{
+			Scanner scan=new Scanner(System.in);
+			System.out.println("enter the age");
+			age=scan.nextInt();
+			
+	}
+	
+	public void verify() throws Exception
+	{
+		if(age<18)
+		{
+			UnderAgeException ue=new UnderAgeException();
+			System.out.println(ue.getMessage());
+			throw ue;
+		}
+		else if(age>60)
+		{
+			OverAgeException oe=new OverAgeException();
+			System.out.println(oe.getMessage());
+			throw oe;
+		}
+		else
+		{
+			System.out.println("collect ur DL");
+		}
+	}
+
+}
+
+package DL.co;
+
+public class RTO {
+	
+	public void initiate()
+	{
+		Applicant ap=new Applicant();
+		try {
+		ap.acceptInput();
+		ap.verify();
+		}
+		catch(Exception e)
+		{
+			try {
+				ap.acceptInput();
+				ap.verify();
+				}
+				catch(Exception f)
+			{
+				System.out.println("kindly apply only if your age between 18 to 65");
+				System.exit(0);
+			}
+			
+		}
+		
+	}
+
+}
+
+public class Launch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		RTO rto=new RTO();
+		rto.initiate();
+
+	}
+
+}
