@@ -1,0 +1,121 @@
+package MultiThreadingRun.co;
+
+import java.util.*;
+
+public class Demos implements Runnable {
+	
+	public void run()
+	{
+		Thread t=Thread.currentThread() ;
+		String name=t.getName();
+		if(name.equals("BANK"))
+		{
+			banking();
+		}
+		else if(name.equals("ADD"))
+		{
+			adding();
+		}
+		else
+		{
+			printing();
+		}
+		
+	}
+	public void banking()
+	{
+		try {
+		System.out.println("Banking Activity Started");
+		Scanner scan=new Scanner(System.in);
+		System.out.println("enter the account number");
+		int a=scan.nextInt();
+		System.out.println("enter the password");
+		int b=scan.nextInt();
+		Thread.sleep(2000);
+		System.out.println("collect the cash");
+		System.out.println("Banking Activity Completed");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Banking activity Interrupted");
+		}
+	}
+	public void adding()
+	{
+		try {
+		System.out.println("Adding Activity Started");
+		int a=5000;
+		int b=5425;
+		int res=a+b;
+		Thread.sleep(2000);
+		System.out.println("the sum of add:"+res);
+		System.out.println("Banking Activity Completed");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Adding Activity Interrupted");
+		}
+	}
+	
+	public void printing()
+	{
+		try
+		{
+		System.out.println("Printing Activity Started");
+		for(int i=64;i<=69;i++)
+		{
+			System.out.println((char)i);
+			Thread.sleep(2000);
+		}
+		System.out.println("Printing Activity Completed");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Printing Activity Interrupted ");
+		}
+	}		
+}
+
+public class LaunchRun {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Demos d1=new Demos();
+		Demos d2=new Demos();
+		Demos d3=new Demos();
+		
+		Thread t1=new Thread(d1);
+		Thread t2=new Thread(d1);
+		Thread t3=new Thread(d1);
+		
+		t1.setName("BANK");
+		t2.setName("ADD");
+		t3.setName("Print");
+		
+		t1.start();
+		t2.start();
+		t3.start();
+	}
+
+//OUTPUT/////
+
+Banking Activity Started
+Adding Activity Started
+Printing Activity Started
+A
+enter the account number
+B
+the sum of add:10425
+Banking Activity Completed
+C
+D
+E
+Printing Activity Completed
+5555
+enter the password
+55554
+collect the cash
+Banking Activity Completed
+
+
+
