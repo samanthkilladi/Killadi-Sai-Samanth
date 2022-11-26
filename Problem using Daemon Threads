@@ -1,0 +1,95 @@
+package Daemon.co;
+
+public class MsWord extends Thread{
+	
+	public void run()
+	{
+		Thread t=Thread.currentThread() ;
+		String name=t.getName();
+		if(name.equals("TYPE"))
+		{
+			typing();
+		}
+		else if(name.equals("CHECK"))
+		{
+			spellchecking();
+		}
+		else
+		{
+			autosaving();
+		}
+	}
+	public void typing()
+	{
+		try {
+		for(int i=1;i<=5;i++)
+		{
+			System.out.println("typing.....");
+			Thread.sleep(2000);
+		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("typing interrupted");
+		}
+	}
+	
+	public void spellchecking()
+	{
+		try {
+		for(;;)
+		{
+			System.out.println("spellchecking.....");
+			Thread.sleep(2000);
+		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("spellchecking interrupted");
+		}
+	}
+	public void autosaving()
+	{
+		try {
+		for(;;)
+		{
+			System.out.println("autosaving.....");
+			Thread.sleep(2000);
+		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("autochecking interrupted");
+		}
+	}
+
+}
+
+
+public class MsWordLaunch {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+       MsWord w1=new MsWord();
+       MsWord w2=new MsWord();
+       MsWord w3=new MsWord();
+       
+       
+       w1.setName("TYPE");
+       w2.setName("CHECK");
+       w3.setName("SAVE");
+
+       w2.setDaemon(true);
+       w3.setDaemon(true);
+       
+       w2.setPriority(4);
+       w3.setPriority(3);
+       
+       w1.start();
+       w2.start();
+       w3.start();
+       
+       
+	}
+
+}
